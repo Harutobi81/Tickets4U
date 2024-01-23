@@ -1,0 +1,25 @@
+<ion-content>
+  <swiper-container [loop]="true" [pagination]="true">
+    <swiper-slide *ngFor="let slide of slides; let i = index">
+      <h1 class=red-title>{{slide.title}}</h1>
+      <p class={{slide.class}} [innerHTML]="slide.description">
+        {{slide.description}}
+      </p>
+      <img src={{slide.image}} alt="">
+      <p>
+        {{slide.help_text}}
+      </p>
+      <p *ngIf="i == 3">
+        i: {{i}} Estoy en el cuarto slide.
+      </p>
+      <ion-button *ngIf="i == 2">Hola mundo</ion-button>
+      <div *ngIf="i == 2">
+        <h1>{{slide.description}}</h1>
+        <p>{{slide.help_text}}</p>
+      </div>
+      <ion-button (click)="goToHome()" *ngIf="i==4">
+        Volver al Home
+      </ion-button>
+    </swiper-slide>
+  </swiper-container>
+</ion-content>

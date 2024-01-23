@@ -1,46 +1,26 @@
 <ion-content>
   <swiper-container [loop]="true" [pagination]="true">
-    <swiper-slide>
-      <h1>¡Bienvenido a Tickets4U!</h1>
+    <swiper-slide *ngFor="let slide of slides; let i = index">
+      <h1 class=red-title>{{slide.title}}</h1>
+      <p class={{slide.class}} [innerHTML]="slide.description">
+        {{slide.description}}
+      </p>
+      <img src={{slide.image}} alt="">
       <p>
-        En Tickets4U encontrarás una amplia variedad de eventos para todos los gustos y presupuestos. Desde conciertos
-        de tus artistas favoritos hasta partidos de fútbol de tu equipo favorito.
+        {{slide.help_text}}
       </p>
-      <img src="assets/images/intro.gif" alt="">
-      <p>Swipe para continuar</p>
-    </swiper-slide>
-    <swiper-slide>
-      <h1>Toda clade de eventos</h1>
-      <p>Comprar entradas en Tickets4U es rápido y sencillo solo tienes que buscar el evento que te interesa,
-        seleccionar las entradas que quieres y realizar el pago. ¡En unos pocos clics tendrás tus entradas en tu mano!
+      <p *ngIf="i == 3">
+        i: {{i}} Estoy en el cuarto slide.
       </p>
-      <img src="assets/images/intro1.gif" alt="">
-      <p>Swipe para continuar</p>
-    </swiper-slide>
-    <swiper-slide>
-      <h1>Apoya a tu equipo favorito en tu deporte favorito</h1>
-      <p>En Tickets4U siempre encontrarás las mejores ofertas exclusivas, descuentos y promociones para que disfrutes de
-        tus eventos al mejor precio.
-      </p>
-      <img src="assets/images/slide3.jpg" alt="">
-      <p>Swipe para continuar</p>
-    </swiper-slide>
-    <swiper-slide>
-      <h1>Disfruta de tu banda favorita</h1>
-      <p>Nunca fue tan fácil acompañar a tu grupo favorito. Aquí en Tickets4U te brindamos la mejor experiencia de
-        compra. Así que no lo pienses más y disfurta, la vida es una sola.
-      </p>
-      <img src="assets/images/slide4.jpg" alt="">
-      <p>Swipe para continuar</p>
-    </swiper-slide>
-    <swiper-slide>
-      <h1>No lo pienses más</h1>
-      <p>Esperamos y puedas disfrutar de una gran experiencia en nuestra App y puedas satisfacer ese gusto por la
-        diversión.
-        Apresurate a comprar tu entrada a tu evento favorito.
-      </p>
-      <img src="assets/images/slide5.png" alt="">
-      <p>Swipe para continuar</p>
+      <ion-button *ngIf="i == 2">Hola mundo</ion-button>
+      <div *ngIf=" i == 4">
+        <h1>{{slide.title}}</h1>
+        <img src="{{slide.image}}" alt="">
+      </div>
+      <div *ngIf="i == 2">
+        <h1>{{slide.description}}</h1>
+        <p>{{slide.help_text}}</p>
+      </div>
     </swiper-slide>
   </swiper-container>
 </ion-content>

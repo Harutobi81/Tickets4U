@@ -14,9 +14,9 @@ export class HomePage {
     private storage: Storage
   ) { }
 
-  goToIntro() {
-    console.log('go to intro')
-    this.router.navigateByUrl('/intro')
-    this.storage.set('mostrarIntro', true)
+  goToIntro(){
+    console.log("go to intro");
+    this.router.navigateByUrl('/intro');
+    this.storage.set('mostreLaIntro', true);
   }
 }

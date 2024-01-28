@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,24 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  validation_messages = {
+    email: [
+      { type: 'required', message: 'El email es obligatorio.' },
+      { type: 'pattern', message: 'El email ingresado no es valido.' }
+    ],
+    password: [
+      { type: 'required', message: 'La contraseña es obligatoria.' },
+      { type: 'pattern', message: 'La contraseña ingresada no es valida.' }
+    ]
+  }
+
+  loginMessage: any;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private navCtrl: NavController
+  ) {
     this.loginForm = this.formBuilder.group({
       email: new FormControl(
         "",
@@ -26,7 +45,7 @@ export class LoginPage implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.pattern(
-            "^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()?])[a-zA-Z0-9!@#$%^&*()?]{8,}$"
+            "^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\d\s]).{8,}$"
           )
         ])
       )
@@ -39,6 +58,12 @@ export class LoginPage implements OnInit {
 
   login(login_data: any) {
     console.log(login_data);
+    this.authService.loginUser(login_data).then(res => {
+      this.loginMessage = res;
+      this.navCtrl.navigateForward('/home');
+    }).catch(err => {
+      this.loginMessage = err;
+    });
   }
 
 }

@@ -5,30 +5,45 @@
 </ion-header>
 
 <ion-content>
+
   <ion-avatar class="center-avatar">
     <img src="assets/images/user.jpg" alt="logo">
   </ion-avatar>
+
   <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+
     <ion-item>
-      <ion-label>Email</ion-label>
-      <ion-input type="email" fill="solid" label="Email" labelPlacement="floating" helperText="Enter a valid email"
-        errorText="Invalid email" formControlName="email"></ion-input>
+      <ion-input label="Email" labelPlacement="floating" placeholder="Email" formControlName="email"></ion-input>
     </ion-item>
+    <div class="validation-message">
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div *ngIf="
+        (loginForm.get('email')?.hasError(validation.type) &&
+        loginForm.get('email')?.dirty)
+        ">{{validation.message}}</div>
+      </ng-container>
+    </div>
+
     <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-input type="password" maxlength="8" fill="solid" label="Password" labelPlacement="floating" helperText="Enter a valid password"
-        errorText="Invalid password" formControlName="password"></ion-input>
+      <ion-input label="Password" labelPlacement="floating" placeholder="Password"
+        formControlName="password"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-button 
-        type="submit" 
-        [disabled]="!loginForm.valid"
-        color="success"
-        shape="round"
-        expand="full"
-      >
-        Login
-      </ion-button>
-    </ion-item>
+    <div class="validation-message">
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <div *ngIf="
+        (loginForm.get('password')?.hasError(validation.type) &&
+        loginForm.get('password')?.dirty)
+        ">{{validation.message}}</div>
+      </ng-container>
+    </div>
+
+    <ion-button type="submit" [disabled]="!loginForm.valid" color="success" shape="round" expand="full">
+      Login
+    </ion-button>
+
   </form>
+
+  <div class="validation-message">
+    {{loginMessage}}
+  </div>
 </ion-content>

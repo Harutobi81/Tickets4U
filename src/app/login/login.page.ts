@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
 export class LoginPage implements OnInit {
+  
   loginForm: FormGroup;
 
   validation_messages = {
@@ -27,7 +30,8 @@ export class LoginPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private storage: Storage
   ) {
     this.loginForm = this.formBuilder.group({
       email: new FormControl(
@@ -60,6 +64,7 @@ export class LoginPage implements OnInit {
     console.log(login_data);
     this.authService.loginUser(login_data).then(res => {
       this.loginMessage = res;
+      this.storage.set('userLoggedIn', true);
       this.navCtrl.navigateForward('/home');
     }).catch(err => {
       this.loginMessage = err;

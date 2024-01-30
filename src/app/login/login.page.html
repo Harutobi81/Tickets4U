@@ -25,8 +25,7 @@
     </div>
 
     <ion-item>
-      <ion-input label="Password" labelPlacement="floating" placeholder="Password"
-        formControlName="password"></ion-input>
+      <ion-input label="Password" labelPlacement="floating" placeholder="Password" type="password" formControlName="password"></ion-input>
     </ion-item>
     <div class="validation-message">
       <ng-container *ngFor="let validation of validation_messages.password">
@@ -38,7 +37,7 @@
     </div>
 
     <ion-button type="submit" [disabled]="!loginForm.valid" color="success" shape="round" expand="full">
-      Login
+      Sign in
     </ion-button>
 
   </form>

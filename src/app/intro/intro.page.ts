@@ -13,13 +13,13 @@ export class IntroPage implements OnInit {
     {
       title: "¡Bienvenido a Tickets4U!",
       description: "",
-      image: "assets/images/intro1.gif",
+      image: "assets/images/logo.png",
       class: "slide-1",
     },
     {
       title: "Toda clade de eventos",
       description: "",
-      image: "assets/images/slide1.jpg",
+      image: "assets/images/img1.jpg",
       class: ""
     },
     {

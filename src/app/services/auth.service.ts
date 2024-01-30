@@ -13,6 +13,7 @@ export class AuthService {
         credential.email == 'harold@gmail.com'
         && credential.password == 'H4r0ld@81'
       ){
+        console.log('Login successful');
         accept('Login successful');
       } else {
         reject('Login failed');

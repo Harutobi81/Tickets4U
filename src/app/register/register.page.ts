@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController  } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -41,11 +42,14 @@ export class RegisterPage implements OnInit {
     
   }
 
+  registerMessage: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private navCtrl: NavController,
-    private storage: Storage
+    private storage: Storage,
+    private authService: AuthService,
+    private alertController: AlertController
   ) {
     this.registerForm = this.formBuilder.group({
       name: new FormControl(
@@ -58,7 +62,7 @@ export class RegisterPage implements OnInit {
         ])
       ),
 
-      lastName: new FormControl(
+      last_name: new FormControl(
         "",
         Validators.compose([
           Validators.required,
@@ -88,7 +92,7 @@ export class RegisterPage implements OnInit {
         ])
       ),
 
-      confirmPassword: new FormControl(
+      password_confirmation: new FormControl(
         "",
         Validators.compose([
           Validators.required,
@@ -104,8 +108,31 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
-  register(register_data: any) {
-    console.log(register_data);
+  async register(register_data: any){
+    if (register_data.password !== register_data.password_confirmation) {
+      
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Las contraseñas no coinciden',
+        buttons: ['OK']
+      });
+
+      await alert.present();
+
+      return;
+
+    }
+
+    this.authService.registerUser(register_data).then(res => {
+      this.registerMessage = res;
+      this.navCtrl.navigateForward('/login');
+    }).catch(err => {
+      this.registerMessage = err;
+    });
+  }
+
+  goToLogin(){
+    this.navCtrl.navigateBack('/login');
   }
 
 }

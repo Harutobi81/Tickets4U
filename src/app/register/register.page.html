@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons>
+      <ion-button (click)="goToLogin()">Volver</ion-button>
+    </ion-buttons>
     <ion-title>register</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -25,7 +28,7 @@
 
     <ion-item>
       <ion-input label="Apellido" labelPlacement="floating" placeholder="Apellido" maxlength="30"
-        formControlName="lastName">
+        formControlName="last_name">
       </ion-input>
     </ion-item> 
     <div class="validation-message">

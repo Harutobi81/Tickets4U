@@ -5,14 +5,15 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(
+  ) { }
 
   loginUser(credential: any) {
     return new Promise((accept, reject) => {
       if (
         credential.email == 'harold@gmail.com'
         && credential.password == 'H4r0ld@81'
-      ){
+      ) {
         console.log('Login successful');
         accept('Login successful');
       } else {
@@ -21,4 +22,21 @@ export class AuthService {
 
     });
   }
+
+  registerUser(registerData: any) {
+
+    return new Promise((accept, reject) => {
+      // Aquí iría la lógica para registrar al usuario 
+      // llamando a un API por ejemplo
+  
+      if (registerData.password == registerData.password_confirmation) {
+        accept('User registered successfully!');
+      } else {
+        reject('Error registering user');
+      }
+    });
+  
+  }
 }
+
+

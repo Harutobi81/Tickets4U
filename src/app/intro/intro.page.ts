@@ -48,7 +48,8 @@ export class IntroPage implements OnInit {
   ) { }
 
   goToHome() {
-    this.router.navigateByUrl('/home')
+    console.log("Volví a Home")
+    this.router.navigateByUrl('menu/home')
   }
   ngOnInit() {
   }

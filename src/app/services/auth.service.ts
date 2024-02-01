@@ -25,10 +25,7 @@ export class AuthService {
 
   registerUser(registerData: any) {
 
-    return new Promise((accept, reject) => {
-      // Aquí iría la lógica para registrar al usuario 
-      // llamando a un API por ejemplo
-  
+    return new Promise((accept, reject) => {  
       if (registerData.password == registerData.password_confirmation) {
         accept('User registered successfully!');
       } else {

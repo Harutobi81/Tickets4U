@@ -129,6 +129,14 @@ export class RegisterPage implements OnInit {
     }).catch(err => {
       this.registerMessage = err;
     });
+
+    const alert = await this.alertController.create({
+      header: 'Información',
+      message: 'Usuario registrado correctamente',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   goToLogin(){

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { MenuPage } from './menu.page';
+import { LoginGuard } from '../guards/login.guard';
+import { IntroGuard } from '../guards/intro.guard';
 
 const routes: Routes = [
   {
@@ -11,7 +12,8 @@ const routes: Routes = [
       {
         path: "home",
         loadChildren: () => 
-        import("../home/home.module").then(m => m.HomePageModule)
+        import("../home/home.module").then(m => m.HomePageModule),
+        canActivate: [LoginGuard, IntroGuard]
       }
     ]
   }

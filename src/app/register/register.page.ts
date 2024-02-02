@@ -57,7 +57,7 @@ export class RegisterPage implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.pattern(
-            "^[a-zA-Z]+"
+            "^[a-zA-Z\\s]+"
           )
         ])
       ),
@@ -67,7 +67,7 @@ export class RegisterPage implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.pattern(
-            "^[a-zA-Z]+"
+            "^[a-zA-Z\\s]]+"
           )
         ])
       ),
@@ -77,7 +77,7 @@ export class RegisterPage implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.pattern(
-            "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+            "^[a-zA-Z]+[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
           )
         ])
       ),

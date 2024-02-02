@@ -6,52 +6,63 @@
 
 <ion-content>
 
-  <ion-avatar class="center-avatar">
-    <img src="assets/images/user.jpg" alt="logo">
-  </ion-avatar>
+  <div class="menu-container">
+    
+    <ion-avatar class="center-avatar">
+      <img src="assets/images/user.jpg" alt="logo">
+    </ion-avatar>
 
-  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
 
-    <ion-item>
-      <ion-input label="Email" labelPlacement="floating" placeholder="Email" formControlName="email"></ion-input>
-    </ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-input labelPlacement="floating" placeholder="Email" formControlName="email" [clearInput]="true">
+            <div slot="label">Email <ion-text color="danger">(Required)</ion-text></div>
+          </ion-input>
+        </ion-item>
+      </ion-list>
+
+      <div class="validation-message">
+        <ng-container *ngFor="let validation of validation_messages.email">
+          <div class="shake-horizontal" *ngIf="
+            (loginForm.get('email')?.hasError(validation.type) &&
+            loginForm.get('email')?.dirty)
+            ">{{validation.message}}</div>
+        </ng-container>
+      </div>
+
+      <ion-list>
+        <ion-item>
+          <ion-input labelPlacement="floating" placeholder="Password" formControlName="password" [clearInput]="true">
+            <div slot="label">Email <ion-text color="danger">(Required)</ion-text></div>
+          </ion-input>
+        </ion-item>
+      </ion-list>
+
+      <div class="validation-message">
+        <ng-container *ngFor="let validation of validation_messages.password">
+          <div class="shake-horizontal" *ngIf="
+            (loginForm.get('password')?.hasError(validation.type) &&
+            loginForm.get('password')?.dirty)
+            ">{{validation.message}}</div>
+        </ng-container>
+      </div>
+
+      <ion-item>
+        <p>
+          ¿No tienes cuenta? <a routerLink="/register">Registrate</a>
+        </p>
+      </ion-item>
+
+      <ion-button type="submit" [disabled]="!loginForm.valid" color="success" shape="round" expand="full">
+        Sign in
+      </ion-button>
+  
+    </form>
+
     <div class="validation-message">
-      <ng-container *ngFor="let validation of validation_messages.email">
-        <div *ngIf="
-        (loginForm.get('email')?.hasError(validation.type) &&
-        loginForm.get('email')?.dirty)
-        ">{{validation.message}}</div>
-      </ng-container>
+      {{loginMessage}}
     </div>
-
-    <ion-item>
-      <ion-input label="Password" labelPlacement="floating" placeholder="Password" type="password" formControlName="password"></ion-input>
-    </ion-item>
-    <div class="validation-message">
-      <ng-container *ngFor="let validation of validation_messages.password">
-        <div *ngIf="
-        (loginForm.get('password')?.hasError(validation.type) &&
-        loginForm.get('password')?.dirty)
-        ">{{validation.message}}</div>
-      </ng-container>
-    </div>
-
-    <ion-button type="submit" [disabled]="!loginForm.valid" color="success" shape="round" expand="full">
-      Sign in
-    </ion-button>
-
-    <ion-item>
-      <p>
-        ¿Perdite tu contraseña?
-      </p>
-      <p>
-        ¿No tienes cuenta? <a routerLink="/register">Registrate</a>
-      </p>
-    </ion-item>
-
-  </form>
-
-  <div class="validation-message">
-    {{loginMessage}}
   </div>
+
 </ion-content>

@@ -67,7 +67,7 @@ export class RegisterPage implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.pattern(
-            "^[a-zA-Z\\s]]+"
+            "^[a-zA-Z\\s]+"
           )
         ])
       ),

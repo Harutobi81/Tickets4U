@@ -14,6 +14,11 @@ const routes: Routes = [
         loadChildren: () => 
         import("../home/home.module").then(m => m.HomePageModule),
         canActivate: [LoginGuard, IntroGuard]
+      },
+      {
+        path: "intro",
+        loadChildren: () => 
+        import("../intro/intro.module").then(m => m.IntroPageModule),
       }
     ]
   }

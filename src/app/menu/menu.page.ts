@@ -27,4 +27,9 @@ export class MenuPage implements OnInit {
     this.navCtrl.navigateRoot('/login');
   }
 
+  goToIntro(){
+    console.log("go to intro")
+    this.navCtrl.navigateBack('/intro');
+  }
+
 }

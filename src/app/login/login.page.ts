@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
@@ -31,44 +31,56 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private navCtrl: NavController,
-    private storage: Storage
+    private storage: Storage,
+    private alertController: AlertController
   ) {
-    this.loginForm = this.formBuilder.group({
-      email: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(
-            "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
-          )
-        ])
-      ),
+      this.loginForm = this.formBuilder.group({
+        email: new FormControl(
+          "",
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(
+              "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+            )
+          ])
+        ),
 
-      password: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(
-            "^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\d\s]).{8,}$"
-          )
-        ])
-      )
+        password: new FormControl(
+          "",
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(
+              "^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\d\s]).{8,}$"
+            )
+          ])
+        )
 
-    })
-  }
+      })
+    }
 
   ngOnInit() {
   }
 
-  login(login_data: any) {
+  async login(login_data: any) {
     console.log(login_data);
-    this.authService.loginUser(login_data).then(res => {
+
+    try {
+      const res = await this.authService.loginUser(login_data);
       this.loginMessage = res;
       this.storage.set('userLoggedIn', true);
       this.navCtrl.navigateForward('menu/home');
-    }).catch(err => {
+    } catch (err) {
       this.loginMessage = err;
-    });
+
+      // Mostrar alerta en caso de error
+      const alert = await this.alertController.create({
+        header: 'Error de inicio de sesión',
+        message: 'Correo o contraseña incorrectos',
+        buttons: ['OK']
+      });
+
+      await alert.present();
+    }
   }
 
 }

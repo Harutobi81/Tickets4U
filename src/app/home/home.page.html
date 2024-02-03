@@ -7,19 +7,11 @@
 </ion-header>
 
 <ion-content>
-    <div>
-        <img src="assets/images/logo.png" alt="logo">
-
-        <ion-button (click)="goToIntro()">
-            Iniciar
-        </ion-button>
-    </div>
-</ion-content>
-
-<ion-content>
     <swiper-container [pagination]="true" [centeredSlides]="true">
         <swiper-slide *ngFor="let slide of event_list">
             <img src="{{slide.image}}" alt="">
+            <h1>{{slide.name}}</h1>
+            <p>{{slide.description}}</p>
         </swiper-slide>
     </swiper-container>
 </ion-content>

@@ -51,59 +51,59 @@ export class RegisterPage implements OnInit {
     private authService: AuthService,
     private alertController: AlertController
   ) {
-    this.registerForm = this.formBuilder.group({
-      name: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(
-            "^[a-zA-Z\\s]+"
-          )
-        ])
-      ),
+      this.registerForm = this.formBuilder.group({
+        name: new FormControl(
+          "",
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(
+              "^[a-zA-Z\\s]+"
+            )
+          ])
+        ),
 
-      last_name: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(
-            "^[a-zA-Z\\s]+"
-          )
-        ])
-      ),
+        last_name: new FormControl(
+          "",
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(
+              "^[a-zA-Z\\s]+"
+            )
+          ])
+        ),
 
-      email: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(
-            "^[a-zA-Z]+[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
-          )
-        ])
-      ),
+        email: new FormControl(
+          "",
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(
+              "^[a-zA-Z]+[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+            )
+          ])
+        ),
 
-      password: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(
-            "^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\d\s]).{8,}$"
-          )
-        ])
-      ),
+        password: new FormControl(
+          "",
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(
+              "^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\d\s]).{8,}$"
+            )
+          ])
+        ),
 
-      password_confirmation: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(
-            "^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\d\s]).{8,}$"
-          )
-        ])
-      )
+        password_confirmation: new FormControl(
+          "",
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(
+              "^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\d\s]).{8,}$"
+            )
+          ])
+        )
 
-    })
-  }
+      })
+    }
 
   ngOnInit() {
   }

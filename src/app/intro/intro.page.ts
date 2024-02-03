@@ -18,31 +18,31 @@ export class IntroPage implements OnInit {
     },
     {
       title: "¡Bienvenido a Tickets4U!",
-      description: "Tu destino para descubrir y disfrutar de eventos locales, nacionales e internacionales. Sumérgete en una experiencia única.",
+      description: 'Descubre y disfruta los mejores eventos, <em>sumérgete en una experiencia única.</em>',
       image: "assets/images/slide1.jpg",
       class: "slide-1",
     },
     {
       title: "Explora un mundo de eventos.",
-      description: "Con <strong>Tickets4U</strong> disfrura desde conciertos locales hasta eventos internacionales. Compra de forma rápida y segura pagando por PSE, tarjeta de crédito o en afiliados.",
+      description: "Con <strong>Tickets4U</strong> disfrura de eventos espectaculares. </br>Compra rápido y seguro.",
       image: "assets/images/slide2.jpg",
       class: ""
     },
     {
       title: "Gana con Tickets4U",
-      description: "Cada compra para eventos, te acerca a increíbles premios y beneficios. Acumula puntos que podrás canjear por experiencias únicas. ¡Tu lealtad tiene recompensa!",
+      description: "Con cada compra acumula puntos que podrás canjear por experiencias únicas. </br>¡Tu lealtad tiene recompensa!",
       image: "assets/images/slide3.jpg",
       class: "slide-3"
     },
     {
       title: "Descuentos Especiales y Eventos Exclusivos",
-      description: "En <strong>Tickets4U</strong>, te consentimos con descuentos especiales y acceso a eventos exclusivos. ¿Estás listo para vivir momentos inolvidables?",
+      description: "En <strong>Tickets4U</strong>, te consentimos con descuentos especiales y acceso a eventos exclusivos. </br> <strong>¿Estás listo para vivir momentos inolvidables?</strong>",
       image: "assets/images/slide4.jpg",
       class: "slide-5"
     },
     {
       title: "Disfruta de la Experiencia Tickets4U",
-      description: "Sumérgete en un viaje único de entretenimiento. A disfrutar <strong>Tickets4U</strong>!",
+      description: "Sumérgete en un viaje único de entretenimiento.</br> A disfrutar <strong>Tickets4U</strong>!",
       image: "assets/images/slide5.jpg",
       class: "slide-4"
     }
